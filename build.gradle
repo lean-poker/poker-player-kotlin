@@ -26,3 +26,6 @@ application {
     mainClass = 'poker.player.kotlin.ApplicationKt'
 }
 
+task stage {
+    dependsOn build
+}

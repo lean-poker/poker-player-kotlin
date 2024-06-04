@@ -9,7 +9,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.json.JSONObject
 
-fun main(args: Array<String>) {
+fun main() {
     val player = Player()
     embeddedServer(Netty, getPort()) {
         routing {
@@ -18,9 +18,7 @@ fun main(args: Array<String>) {
             }
             post {
                 val formParameters = call.receiveParameters()
-                val action = formParameters["action"].toString()
-
-                val result = when (action) {
+                val result = when (val action = formParameters["action"].toString()) {
                     "bet_request" -> {
                         val gameState = formParameters["game_state"]
 

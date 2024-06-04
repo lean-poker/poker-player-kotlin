@@ -1,7 +1,7 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.0'
-    id 'io.ktor.plugin' version '2.3.4'
+    id 'io.ktor.plugin' version '2.3.11'
     id 'application'
 }
 
@@ -10,16 +10,21 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-netty:2.3.4")
-    implementation 'org.json:json:20230227'
+    implementation "io.ktor:ktor-server-core-jvm:2.3.11"
+    implementation "io.ktor:ktor-server-netty-jvm:2.3.11"
+    implementation 'org.json:json:20231013'
     implementation 'org.slf4j:slf4j-api:1.7.36'
     implementation 'org.slf4j:slf4j-simple:1.7.36'
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 application {
@@ -27,5 +32,5 @@ application {
 }
 
 task stage {
-    dependsOn build
+    dependsOn assemble
 }
